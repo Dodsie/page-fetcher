@@ -1,0 +1,16 @@
+const fs = require('fs');
+
+const request = require('request');
+request(process.argv[2], (error, response, body) => {
+// console.log('error:', error); // Print the error if one occurred
+// console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+// console.log('body:', body); // Print the HTML for the Google homepage.
+  fs.writeFile(process.argv[3], body, err => {
+    if (err) {
+      console.error(err);
+      return;
+    } else {
+      console.log(`Downloaded and saved ${body.length} bytes to ${process.argv[3]}`);
+    }
+  });
+});
